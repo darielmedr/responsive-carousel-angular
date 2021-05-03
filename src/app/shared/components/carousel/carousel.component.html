@@ -1,0 +1,35 @@
+<div class="carousel">
+  <div #slidesRef class="slides">
+      <img [src]="slides[slides.length - 1].url" [alt]="slides[slides.length - 1].title">
+      <ng-container *ngFor="let slide of slides">
+        <img [src]="slide.url" [alt]="slide.title" />
+      </ng-container>
+      <img [src]="slides[0].url" [alt]="slides[0].title">
+    </div>
+
+  <div class="controls" *ngIf="showControls">
+    <button class="btn-next" (click)="setNextSlide()">
+      <svg viewBox="0 0 24 24">
+        <g><path d="M0,0h24v24H0V0z" fill="none" /></g>
+        <g><polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12" /></g>
+      </svg>
+    </button>
+    <button class="btn-prev" (click)="setPreviousSlide()">
+      <svg viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0V0z" fill="none" opacity=".87" />
+        <path
+          d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <ul class="carousel-nav" *ngIf="showNavigation">
+    <li
+      class="nav-circle"
+      *ngFor="let slide of slides; let index = index"
+      (click)="setSlideAtIndex(index)"
+      [ngClass]="{'active': (index === currentIndex - 1)}"
+    ></li>
+  </ul>
+</div>
